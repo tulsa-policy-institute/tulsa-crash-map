@@ -1,0 +1,30 @@
+{{page-title "TulsaCrashMap"}}
+
+<MaplibreGl
+  @initOptions={{hash hash=true}}
+  class="map-container"
+  as |map|
+>
+  <map.source
+    @options={{hash
+      type='vector'
+      tiles=(array 'pmtiles://https://storage.googleapis.com/tpi-pmtiles/wrecks.pmtiles/{z}/{x}/{y}')
+    }}
+    as |source|
+  >
+    <source.layer
+      @layer={{hash
+        id='wrecks'
+        source-layer="wrecks"
+        type='circle'
+        paint=(hash
+          circle-color='red'
+          circle-opacity=0.3
+          circle-radius=2
+        )
+      }} as |layer|
+    />
+  </map.source>
+</MaplibreGl>
+
+{{outlet}}
